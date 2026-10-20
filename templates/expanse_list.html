@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Расходы{% endblock %}
+
+{% block page_styles %}<link rel="stylesheet" href="{% static 'css/expanse_list.css' %}">{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Все расходы</h2>
+    <a href="{% url 'expanse_create' %}" class="btn btn-danger">+ Добавить расход</a>
+</div>
+
+<div class="card shadow-sm expense-card">
+    <div class="card-body p-0">
+        {% include 'transactions_table.html' with items=expenses update_url='expanse_update' delete_url='expanse_delete' %}
+    </div>
+</div>
+{% endblock %}

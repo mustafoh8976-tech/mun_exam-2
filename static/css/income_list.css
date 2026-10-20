@@ -1,0 +1,7 @@
+.income-card {
+    overflow: hidden;
+}
+
+.income-card .table-responsive {
+    max-height: 70vh;
+}

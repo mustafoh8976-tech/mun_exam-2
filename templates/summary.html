@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Сводка{% endblock %}
+
+{% block page_styles %}<link rel="stylesheet" href="{% static 'css/summary.css' %}">{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Общая сводка</h2>
+
+<div class="row g-4">
+    <div class="col-md-6 col-lg-3">
+        <div class="card shadow-sm income-card summary-card h-100">
+            <div class="card-body">
+                <div class="text-muted">Всего доходов</div>
+                <div class="summary-amount text-success">{{ total_income }}</div>
+                <a href="{% url 'summary_income' %}">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="card shadow-sm expense-card summary-card h-100">
+            <div class="card-body">
+                <div class="text-muted">Всего расходов</div>
+                <div class="summary-amount text-danger">{{ total_expense }}</div>
+                <a href="{% url 'summary_expense' %}">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="card shadow-sm summary-card h-100">
+            <div class="card-body">
+                <div class="text-muted">Баланс</div>
+                <div class="summary-amount {% if balance >= 0 %}text-success{% else %}text-danger{% endif %}">{{ balance }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="card shadow-sm bonus-card summary-card h-100">
+            <div class="card-body">
+                <div class="text-muted">Бонус</div>
+                <div class="summary-amount text-warning">{{ bonus|floatformat:2 }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

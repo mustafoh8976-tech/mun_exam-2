@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block page_styles %}<link rel="stylesheet" href="{% static 'css/list.css' %}">{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card shadow-sm income-card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Доходы</h5>
+                <a href="{% url 'income_create' %}" class="btn btn-success btn-sm">+ Добавить</a>
+            </div>
+            <div class="card-body p-0">
+                {% include 'transactions_table.html' with items=incomes update_url='income_update' delete_url='income_delete' %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card shadow-sm expense-card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Расходы</h5>
+                <a href="{% url 'expanse_create' %}" class="btn btn-danger btn-sm">+ Добавить</a>
+            </div>
+            <div class="card-body p-0">
+                {% include 'transactions_table.html' with items=expenses update_url='expanse_update' delete_url='expanse_delete' %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

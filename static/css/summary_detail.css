@@ -1,0 +1,4 @@
+.category-summary-table th:last-child,
+.category-summary-table td:last-child {
+    text-align: right;
+}

@@ -1,0 +1,48 @@
+body {
+    background-color: #f4f6f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.income-card {
+    border-top: 4px solid #198754;
+}
+
+.expense-card {
+    border-top: 4px solid #dc3545;
+}
+
+.bonus-card {
+    border-top: 4px solid #ffc107;
+}
+
+.summary-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 6px 0;
+}
+
+footer {
+    background-color: #fff;
+    font-size: 14px;
+}

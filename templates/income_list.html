@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Доходы{% endblock %}
+
+{% block page_styles %}<link rel="stylesheet" href="{% static 'css/income_list.css' %}">{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Все доходы</h2>
+    <a href="{% url 'income_create' %}" class="btn btn-success">+ Добавить доход</a>
+</div>
+
+<div class="card shadow-sm income-card">
+    <div class="card-body p-0">
+        {% include 'transactions_table.html' with items=incomes update_url='income_update' delete_url='income_delete' %}
+    </div>
+</div>
+{% endblock %}

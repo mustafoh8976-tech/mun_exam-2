@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_styles %}<link rel="stylesheet" href="{% static 'css/transaction_delete.css' %}">{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-danger delete-confirmation-card">
+            <div class="card-body">
+                <h3 class="mb-3">{{ title }}</h3>
+                <p>Вы точно хотите удалить запись?</p>
+                <ul>
+                    <li>Сумма: <b>{{ transaction.amount }}</b></li>
+                    <li>Категория: {{ transaction.get_category_display }}</li>
+                    <li>Дата: {{ transaction.created_at|date:"d.m.Y H:i" }}</li>
+                </ul>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Да, удалить</button>
+                    <a href="{% url 'list_in_view' %}" class="btn btn-secondary">Отмена</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

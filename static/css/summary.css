@@ -1,0 +1,7 @@
+.summary-card {
+    min-height: 100%;
+}
+
+.summary-card .summary-amount {
+    white-space: nowrap;
+}

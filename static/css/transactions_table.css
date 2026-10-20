@@ -1,0 +1,8 @@
+.table-responsive {
+    border-radius: 0 0 12px 12px;
+}
+
+.table td,
+.table th {
+    padding: 12px;
+}

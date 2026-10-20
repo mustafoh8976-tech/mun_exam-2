@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Финансовый трекер{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/transactions_table.css' %}">
+    {% block page_styles %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'list_in_view' %}">💰 Финансовый трекер</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'list_in_view' %}">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'income_list' %}">Доходы</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'expanse_list' %}">Расходы</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'summary' %}">Сводка</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <span class="text-light">{{ user.username }}</span>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-light btn-sm">Выйти</button>
+                    </form>
+                </div>
+                {% else %}
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Вход</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Регистрация</a></li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="text-center text-muted py-3 border-top">
+        Персональный финансовый трекер
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

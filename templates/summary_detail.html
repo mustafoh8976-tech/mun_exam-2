@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_styles %}<link rel="stylesheet" href="{% static 'css/summary_detail.css' %}">{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">{{ title }}</h2>
+
+<div class="card shadow-sm mb-4 {% if kind == 'income' %}income-card{% else %}expense-card{% endif %}">
+    <div class="card-body">
+        <div class="text-muted">Итого</div>
+        <div class="summary-amount {% if kind == 'income' %}text-success{% else %}text-danger{% endif %}">{{ total }}</div>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-header"><h5 class="mb-0">По категориям</h5></div>
+    <div class="card-body p-0">
+        {% if by_category %}
+        <table class="table mb-0 category-summary-table">
+            <thead class="table-light">
+                <tr><th>Категория</th><th>Сумма</th></tr>
+            </thead>
+            <tbody>
+                {% for row in by_category %}
+                <tr>
+                    <td>{{ row.name }}</td>
+                    <td class="fw-bold">{{ row.total }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-muted text-center p-4 mb-0">Пока записей нет</p>
+        {% endif %}
+    </div>
+</div>
+
+<a href="{% url 'summary' %}" class="btn btn-secondary mt-4">← Общая сводка</a>
+{% endblock %}
